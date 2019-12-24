@@ -9,11 +9,21 @@
 namespace App\Http\Controllers\Api;
 
 
+use App\Models\User;
+use Illuminate\Http\Request;
+
 class UsersController extends Controller
 {
     public function me()
     {
         return $this->success(auth()->user());
+    }
+
+    public function user(Request $request)
+    {
+        $user = User::query()->select('name', 'avatar_url')->find($request->input('id'));
+
+        return $this->success($user);
     }
 
 

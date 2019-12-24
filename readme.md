@@ -13,3 +13,4 @@
 6. 执行 `php artisan migrate`
 7. `php artisan storage:link`
 
+# weapp-laravel-things

@@ -24,6 +24,14 @@ Route::group([
     Route::group([
     ], function () {
         // 游客可以访问的接口
+        Route::post('images/store', 'ImagesController@store')
+            ->name('api.images.store');
+
+        Route::get('things', 'ThingsController@index')
+            ->name('api.things.index');
+        Route::get('user/which', 'UsersController@user')
+            ->name('api.users.which');
+
 
 
         // 需要 token 验证的接口
@@ -31,9 +39,22 @@ Route::group([
 
             // 当前登录用户信息
             Route::get('user', 'UsersController@me')
-                ->name('api.user.me');
+                ->name('api.users.me');
 
+            Route::post('contracts/join', 'ContractsController@join')
+                ->name('api.contracts.join');
 
+            Route::get('contracts/things', 'ContractsController@things')
+                ->name('api.contracts.things');
+
+            Route::get('contract_things/memories', 'ContractThingsController@memories')
+                ->name('api.contract_things.memories');
+
+            Route::post('contract_things/create_memory', 'ContractThingsController@createMemory')
+                ->name('api.contract_things.create_memory');
+
+            Route::post('contract_things/delete_memory', 'ContractThingsController@deleteMemory')
+                ->name('api.contract_things.delete_memory');
 
 
         });

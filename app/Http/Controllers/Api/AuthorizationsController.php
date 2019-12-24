@@ -33,7 +33,7 @@ class AuthorizationsController extends Controller
         $attributes['weixin_session_key'] = $data['session_key'];
 
         $attributes['name'] = $request->name;
-        $attributes['avatar_url'] = $request->avatar_url;
+        $attributes['avatar_url'] = $request->avatar_url ?? '';
         $attributes['gender'] = $request->gender ?? 0;
         $attributes['city'] = $request->city ?? '';
         $attributes['province'] = $request->province ?? '';
@@ -72,7 +72,7 @@ class AuthorizationsController extends Controller
         return $this->success([
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'expired_after' => time() + Auth::guard('api')->factory()->getTTL() * 60
+            'expired_at' => time() + Auth::guard('api')->factory()->getTTL() * 60
         ]);
     }
 }
