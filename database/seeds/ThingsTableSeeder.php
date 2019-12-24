@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Things;
 use Illuminate\Database\Seeder;
 
 class ThingsTableSeeder extends Seeder
@@ -11,7 +12,7 @@ class ThingsTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Things::query()->insert([
+        Things::query()->insert([
             ['en_title' => 'Get wet together', 'zh_title' => '一起淋一场雨', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
             ['en_title' => 'Ride Ferris wheel', 'zh_title' => '一起坐摩天轮', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
             ['en_title' => 'Eat melon seeds', 'zh_title' => '一起比赛吃瓜子', 'created_at' => \Carbon\Carbon::now(), 'updated_at' => \Carbon\Carbon::now()],
