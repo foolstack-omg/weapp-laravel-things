@@ -31,7 +31,6 @@ class ContractThingsController extends Controller
     public function createMemory(Request $request) {
 
 
-
         ThingMemories::query()->create([
             'contract_thing_id' => $request->contract_thing_id,
             'user_id' => auth()->user()->id,
@@ -46,8 +45,12 @@ class ContractThingsController extends Controller
     }
 
     public function deleteMemory(Request $request) {
+        $contract_thing_id = ThingMemories::query()->where('id', $request->id)->value('contract_thing_id');
         ThingMemories::query()->where('id', $request->id)->where('user_id', auth()->user()->id)->delete();
-
+        $count = ThingMemories::query()->where('contract_thing_id', $contract_thing_id)->count();
+        if($count === 0) {
+            ContractThings::query()->where('id', $contract_thing_id)->update(['finished_at' => null]);
+        }
 
         return $this->success();
     }
