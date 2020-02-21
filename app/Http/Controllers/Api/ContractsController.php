@@ -28,6 +28,10 @@ class ContractsController extends Controller
             return $this->failed('你或他已加入别人的约定了~');
         }
 
+        if($request->a_user_id == auth()->user()->id) {
+            return $this->failed('请等待对方同意');
+        }
+
         try{
             DB::transaction(function() use ($request){
                 $contract = Contracts::query()->create([
